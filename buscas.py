@@ -75,7 +75,7 @@ def busca_sequencial_indexada(index, lista, alvo):
                 else:
                     return(-1)
 
-# Tentativa da função recursiva. 
+# Busca binária com criação de novo vetor a cada iteração
 def busca_binaria(lista, alvo, auxPos):
     print(lista)
     tamanho = len(lista)
@@ -95,6 +95,33 @@ def busca_binaria(lista, alvo, auxPos):
         return busca_binaria(novaLista, alvo, auxPos+pos)
 
 
+# Busca por interpolação
+def busca_interpolacao(lista, alvo, inf, sup):
+    #Caso tenha apenas um elemento na lista
+    # print("\n[", end="")
+    # for numb in range(inf, sup+1, 1):
+    #     print(str(lista[numb]), end=", ")
+    # print("]", end="")
+    print('inf: ' + str(inf) + ' ' + 'sup: ' + str(sup))
+    if(lista[sup] == lista[inf]):
+        if(lista[inf] == alvo):
+            return inf
+        else:
+            return -1
+
+    meio = inf + int( (sup - inf) * ( (alvo - lista[inf]) / (lista[sup] - lista[inf]) ) )
+    print('meio: ' + str(meio))
+    print('heheh')
+    if( (lista[inf] > alvo) or (lista[sup] < alvo)):
+        return -1
+    elif(lista[meio] < alvo):
+        return busca_interpolacao(lista, alvo, meio+1, sup)
+    elif(lista[meio] > alvo):
+        return busca_interpolacao(lista, alvo, inf, meio-1)
+    else:
+        return meio
+
+
 
 
 
@@ -105,7 +132,6 @@ def busca_binaria(lista, alvo, auxPos):
 # print(str(pos))
 # pos = busca_sequencial(biglist, 25)
 # print(str(pos))
-#
 # index = cria_index(biglist, 10)
 # pos = busca_sequencial_indexada(index, biglist, 998)
 # print(str(pos))
@@ -117,3 +143,85 @@ def busca_binaria(lista, alvo, auxPos):
 # print(thisIndex)
 # pos = busca_binaria(list, 1, 0)
 # print(str(pos))
+# print('real: ' + str(biglist.index(762)))
+# pos = busca_interpolacao(biglist, 15, 0, 199)
+# print(str(pos))
+
+def menu_principal():
+    print("*******************************************")
+    print("**            MENU - LISTA 1             **")
+    print("*******************************************")
+    print("**   1 - Iniciar uma nova partida        **")
+    print("**   2 - Executar buscas fora de um jogo **")
+    print("**   3 -                                 **")
+    print("**   4 - Créditos                        **")
+    print("**   0 - Sair                            **")
+    print("*******************************************")
+    escolha = input("Digite uma Escolha: ")
+    return escolha
+
+def escolha_tamanho():
+    print("Primeiramento,escolha o tamanho do vetor")
+    tamanho = input("Digite o tamanho: ")
+    tam = int(tamanho)
+    randnums= np.random.randint(1,101,tam)
+    return randnums
+
+def escolha_busca():
+    print("Agora escolha seu método de busca desejado\n")
+    print("*******************************************")
+    print("**   1 - Busca Binaria                   **")
+    print("**   2 - Busca por interpolaçao          **")
+    print("**   3 - Busca sequencial                **")
+    print("**   4 - Busca sequencial indexada       **")
+    print("**   5 - Busca sequencial com sentinela  **")
+    print("*******************************************")
+    escolhaBusca = input("Digite sua Escolha: ")
+    return escolhaBusca
+
+escolhaBusca = 0
+escolha = 0
+
+while escolha != '100':
+    escolha = menu_principal()
+    if escolha == '1':
+        print("O vetor aleatório é: \n")
+        print(escolha_tamanho())
+        escolha_busca()
+    elif escolha == '2':
+        escolha_tamanho()
+        print(randnums)
+    elif escolha == '3':
+        print("MEU ALE\n")
+    elif escolha == '4':
+        print("\n**************************************")
+        print("Esse trabalho foi feito com carinho pelos alunos:")
+        print("Alexandre Miguel Rodrigues Nunes Pereira - Matricula: 16/0000840")
+        print("Wictor Bastos Girardi - Matricula: 17/0047326")
+        print("**************************************\n\n")
+    elif escolha == '0':
+        print("Obrigado por usar, volte sempre!\n")
+        break
+    else:
+        print('Opção Invalida! Tente novamente')
+
+while escolhaBusca != '100':
+    escolhaBusca = escolha_busca()
+    if escolha == '1':
+        print("O vetor aleatório é: \n")
+        print(escolha_tamanho())
+    elif escolha == '2':
+        escolha_tamanho()
+        print(randnums)
+    elif escolha == '3':
+        print("MEU ALE\n")
+    elif escolha == '4':
+        print("\n**************************************")
+        print("Esse trabalho foi feito com carinho pelos alunos:")
+        print("Alexandre Miguel Rodrigues Nunes Pereira - Matricula: 16/0000840")
+        print("Wictor Bastos Girardi - Matricula: 17/0047326")
+        print("**************************************\n\n")
+    elif escolha == '5':
+        print("Obrigado por usar, volte sempre!\n")
+    else:
+        print('Opção Invalida! Tente novamente')
