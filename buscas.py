@@ -75,17 +75,16 @@ def busca_sequencial_indexada(index, lista, alvo):
                 else:
                     return(-1)
 
-# Recursiva sim, foda-se
+# Tentativa da função recursiva. 
 def busca_binaria(lista, alvo, auxPos):
     print(lista)
     tamanho = len(lista)
     pos = (tamanho//2)
     novaLista = []
     if(lista[pos] == alvo):
-        if(auxPos > -1):
-            return pos + auxPos
-        else:
-            return pos
+        return pos + auxPos
+    elif(tamanho == 1):
+        return(-1)
     elif(lista[pos] > alvo):
         for elemento in range(pos):
             novaLista.append(lista[elemento])
@@ -94,9 +93,6 @@ def busca_binaria(lista, alvo, auxPos):
         for elemento in range(pos, tamanho, 1):
             novaLista.append(lista[elemento])
         return busca_binaria(novaLista, alvo, auxPos+pos)
-
-    if(tamanho == 0):
-        return(-1)
 
 
 
@@ -119,5 +115,5 @@ def busca_binaria(lista, alvo, auxPos):
 # print(randnums)
 # thisIndex = cria_index(randnums, 10)
 # print(thisIndex)
-pos = busca_binaria(list, 23, 0)
-print(str(pos))
+# pos = busca_binaria(list, 1, 0)
+# print(str(pos))
