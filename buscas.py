@@ -215,7 +215,7 @@ while escolha != '100':
         else:
             ponto += 0
         print("Q5 - Qual desses algoritmos necessitam estar ordenados para funcionar?\n")
-        print("1 - Busca sequencial indexada")
+        print("1 - Busca Binaria")
         print("2 - busca sequencial com Sentinela")
         escolhaJogo = input("Digite sua Escolha: ")
         if escolhaJogo == '1':
